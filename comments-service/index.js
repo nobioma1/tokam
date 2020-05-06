@@ -38,11 +38,12 @@ app.post('/posts/:id/comments', async (req, res) => {
   });
 
   res.status(200).send(commentsByPostId[req.params.id]);
-  });
+});
 
-  commentsByPostId[req.params.id] = comments;
+app.post('/events', (req, res) => {
+  console.log(req.body);
 
-  res.status(200).send(commentsByPostId[req.params.id]);
+  res.send({ status: 'OK' });
 });
 
 app.listen(4001, () => {
