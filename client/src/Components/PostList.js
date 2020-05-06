@@ -11,7 +11,7 @@ const PostList = () => {
   const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await axios.get(`${config.url.posts}/posts`);
+    const res = await axios.get(`${config.url.query}/posts`);
 
     setPosts(res.data);
   };
@@ -39,7 +39,7 @@ const PostList = () => {
               <Text fontSize="xs">{moment(post.timestamp).fromNow()}</Text>
             </Box>
             <CommentCreate postId={post.id} />
-            <CommentList postId={post.id} />
+            <CommentList comments={post.comments} />
           </Box>
         ))}
       </Stack>
