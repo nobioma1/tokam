@@ -5,12 +5,12 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/events', (req, res) => {
+app.post('/events', async (req, res) => {
   const events = req.body;
 
-  axios.post('http://localhost:4000', events);
-  axios.post('http://localhost:4001', events);
-  axios.post('http://localhost:4002', events);
+  await axios.post('http://localhost:4000/events', events);
+  await axios.post('http://localhost:4001/events', events);
+  await axios.post('http://localhost:4002/events', events);
 
   res.status(200).send({ status: 'OK' });
 });
