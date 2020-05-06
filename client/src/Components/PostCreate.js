@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { Box, Text, Input, Button, Stack, FormLabel } from '@chakra-ui/core';
+import { Box, Input, Button, Stack, FormLabel } from '@chakra-ui/core';
 import React, { useState } from 'react';
 
-const URL = 'http://localhost:4000/posts';
+import config from '../config';
 
 const PostCreate = () => {
   const [title, setTitle] = useState('');
@@ -10,7 +10,7 @@ const PostCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post(URL, {
+    const res = await axios.post(`${config.url.posts}/posts`, {
       title,
     });
 
@@ -23,7 +23,7 @@ const PostCreate = () => {
     <Box>
       <form onSubmit={handleSubmit}>
         <Stack py={2}>
-          <FormLabel fontSize="3xl" isRequired>
+          <FormLabel htmlFor="title" fontSize="3xl" isRequired>
             What do you wanna tell us?
           </FormLabel>
           <Input
