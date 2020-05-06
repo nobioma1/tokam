@@ -8,6 +8,10 @@ app.use(express.json());
 
 const posts = {};
 
+app.get('/posts', (req, res) => {
+  res.send(posts);
+});
+
 app.post('/events', (req, res) => {
   const { type, data } = req.body;
 
@@ -33,6 +37,7 @@ app.post('/events', (req, res) => {
   }
   return res.status(200).end();
 });
+
 app.listen(4002, () => {
   console.log('Listening on PORT 4002');
 });
