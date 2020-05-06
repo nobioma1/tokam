@@ -1,32 +1,13 @@
-import axios from 'axios';
 import { Box, Text, List, ListItem, ListIcon, Flex } from '@chakra-ui/core';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 
-import config from '../config';
-
-const CommentList = ({ postId }) => {
-  const [comments, setComments] = useState([]);
-
-  const fetchComments = async () => {
-    const res = await axios.get(
-      `${config.url.comments}/posts/${postId}/comments`
-    );
-
-    setComments(res.data);
-  };
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
-  const renderedPosts = Object.values(comments);
-
+const CommentList = ({ comments }) => {
   return (
     <Box>
       <Text fontSize="md">Comments</Text>
       <List spacing={2}>
-        {renderedPosts.map((item) => (
+        {comments.map((item) => (
           <ListItem
             key={item.id}
             p={2}
