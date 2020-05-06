@@ -21,6 +21,7 @@ app.post('/posts', (req, res) => {
   posts[id] = {
     id,
     title,
+    timestamp: new Date(),
   };
 
   res.status(201).send(posts[id]);
