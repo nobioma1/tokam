@@ -25,6 +25,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     id: commentId,
     comment,
     postId: req.params.id,
+    status: 'pending',
     timestamp: new Date(),
   };
 
