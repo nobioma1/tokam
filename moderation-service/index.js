@@ -6,14 +6,14 @@ const app = express();
 app.use(express.json());
 
 function isModerate(string) {
-  return string.toLowerCase().includes('fuck');
+  return !string.toLowerCase().includes('fuck');
 }
 
 app.post('/events', async (req, res) => {
   const { type, data } = req.body;
 
   if (type === 'CommentCreated') {
-    const status = isModerate() ? 'approved' : 'rejected';
+    const status = isModerate(data.comment) ? 'approved' : 'rejected';
 
     await axios.post('http://localhost:4005/events', {
       type: 'CommentModerated',
