@@ -36,6 +36,15 @@ app.post('/events', (req, res) => {
       timestamp,
     });
   }
+
+  if (type === 'CommentUpdated') {
+    const { id, postId } = data;
+
+    const post = posts[postId];
+    const index = post.comments.findIndex((comment) => comment.id === id);
+
+    post.comments[index] = data;
+  }
   return res.status(200).end();
 });
 
