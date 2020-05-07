@@ -1,3 +1,4 @@
+const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
 
@@ -53,6 +54,13 @@ app.post('/events', (req, res) => {
   return res.status(200).end();
 });
 
-app.listen(4002, () => {
+app.listen(4002, async () => {
   console.log('Listening on PORT 4002');
+
+  const res = await axios.get('http://localhost:4005/events');
+
+  for (event of res.data) {
+    console.log(`Handling event "${event.type}"`);
+    handleEvent(event.type, event.data);
+  }
 });
