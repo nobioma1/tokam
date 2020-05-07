@@ -8,13 +8,7 @@ app.use(express.json());
 
 const posts = {};
 
-app.get('/posts', (req, res) => {
-  res.send(posts);
-});
-
-app.post('/events', (req, res) => {
-  const { type, data } = req.body;
-
+function handleEvent(type, data) {
   if (type === 'PostCreated') {
     const { id, title, timestamp } = data;
     posts[id] = {
@@ -45,6 +39,17 @@ app.post('/events', (req, res) => {
 
     post.comments[index] = data;
   }
+}
+
+app.get('/posts', (req, res) => {
+  res.send(posts);
+});
+
+app.post('/events', (req, res) => {
+  const { type, data } = req.body;
+
+  handleEvent(type, data);
+
   return res.status(200).end();
 });
 
