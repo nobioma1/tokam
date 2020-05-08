@@ -1,5 +1,8 @@
 FROM node:alpine
 
+# fix bug with cra
+ENV CI=true 
+
 WORKDIR /app
 
 COPY package.json ./
