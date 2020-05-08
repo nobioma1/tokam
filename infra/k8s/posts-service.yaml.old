@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: posts-service
-spec:
-  containers:
-    - name: posts-service
-      image: nobioma1/posts-service:0.0.1
