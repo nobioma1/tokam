@@ -5,6 +5,8 @@ const { randomBytes } = require('crypto');
 
 const app = express();
 
+const PORT = process.env.PORT || 4000;
+
 const posts = {};
 
 app.use(express.json());
@@ -41,6 +43,6 @@ app.post('/events', (req, res) => {
   res.send({ status: 'OK' });
 });
 
-app.listen(4000, () => {
-  console.log('listening at 4000');
+app.listen(PORT, () => {
+  console.log(`POSTS-SERVICE -> listening on ${PORT}`);
 });

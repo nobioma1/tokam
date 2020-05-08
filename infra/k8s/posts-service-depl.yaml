@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: posts-service
-          image: nobioma1/posts-service:0.0.1
+          image: nobioma1/posts-service:latest
