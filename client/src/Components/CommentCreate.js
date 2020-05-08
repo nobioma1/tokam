@@ -10,12 +10,9 @@ const CommentCreate = ({ postId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post(
-      `${config.url.comments}/posts/${postId}/comments`,
-      {
-        comment,
-      }
-    );
+    const res = await axios.post(`${config.url}/posts/${postId}/comments`, {
+      comment,
+    });
 
     console.log(res);
 

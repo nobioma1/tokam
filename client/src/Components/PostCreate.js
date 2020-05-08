@@ -10,7 +10,7 @@ const PostCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post(`${config.url.posts}/posts`, {
+    const res = await axios.post(`${config.url}/posts/create`, {
       title,
     });
 
