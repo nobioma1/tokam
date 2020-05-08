@@ -1,0 +1,59 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/* # watch files in this folder
+
+build:
+  local:
+    push: false
+  artifacts:
+    - image: nobioma1/comments
+      context: comments-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js" # copy changes in file match to pod
+            dest: .
+    - image: nobioma1/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js" # copy changes in file match to pod
+            dest: .
+    - image: nobioma1/moderation
+      context: moderation-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js" # copy changes in file match to pod
+            dest: .
+    - image: nobioma1/posts
+      context: posts-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js" # copy changes in file match to pod
+            dest: .
+    - image: nobioma1/query
+      context: query-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js" # copy changes in file match to pod
+            dest: .
+    - image: nobioma1/tokam-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.js" # copy changes in file match to pod
+            dest: .
